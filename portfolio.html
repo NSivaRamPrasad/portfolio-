@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N.Siva Ram Prasad — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #2563eb;
+    --blue-light: #eff6ff;
+    --dark: #0f172a;
+    --mid: #1e293b;
+    --text: #334155;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(15,23,42,0.97);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: white;
+    letter-spacing: -0.02em;
+  }
+  .nav-logo span { color: #3b82f6; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: white; }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    background: var(--blue-light);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 40px;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0f172a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+    top: -100px; right: -100px;
+    border-radius: 50%;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-greeting {
+    font-size: 0.9rem;
+    color: #3b82f6;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero-name {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero-name span { color: #3b82f6; }
+  .hero-role {
+    font-size: 1.1rem;
+    color: #94a3b8;
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+  .hero-desc {
+    font-size: 0.95rem;
+    color: #64748b;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    padding: 12px 24px;
+    background: #2563eb;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: #1d4ed8; transform: translateY(-1px); }
+  .btn-outline {
+    padding: 12px 24px;
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: #3b82f6; color: white; transform: translateY(-1px); }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 36px;
+    border-top: 1px solid #1e293b;
+    flex-wrap: wrap;
+  }
+  .stat-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: white;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-top: 2px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: white; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .about-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+  }
+  .about-card h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .info-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 0.88rem;
+  }
+  .info-row .label { color: var(--muted); min-width: 70px; font-weight: 500; }
+  .info-row .value { color: var(--dark); font-weight: 500; }
+  .info-row a { color: var(--blue); text-decoration: none; }
+  .info-row a:hover { text-decoration: underline; }
+
+  /* ── SKILLS ── */
+  #skills { background: #f8fafc; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .skill-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.1);
+  }
+  .skill-icon { font-size: 1.6rem; margin-bottom: 8px; }
+  .skill-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); margin-bottom: 4px; }
+  .skill-level {
+    font-size: 0.75rem;
+    color: var(--blue);
+    font-weight: 600;
+    background: var(--blue-light);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: white; }
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .project-card {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card:hover {
+    border-color: #3b82f6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(37,99,235,0.1);
+  }
+  .project-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #10b981;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 2px 8px;
+    border-radius: 999px;
+    display: inline-block;
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 16px;
+  }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .project-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #475569;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .project-links { display: flex; gap: 10px; }
+  .project-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: opacity 0.2s;
+  }
+  .project-link:hover { opacity: 0.75; }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+    text-align: center;
+  }
+  #contact .section-title { color: white; }
+  #contact .section-sub { color: #64748b; }
+  .contact-email {
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3b82f6;
+    text-decoration: none;
+    margin: 24px 0 32px;
+    padding: 14px 28px;
+    border: 1px solid #1e3a5f;
+    border-radius: 10px;
+    background: rgba(37,99,235,0.08);
+    transition: background 0.2s;
+  }
+  .contact-email:hover { background: rgba(37,99,235,0.18); }
+  .social-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .social-link {
+    padding: 10px 20px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .social-link:hover { border-color: #3b82f6; color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f172a;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.78rem;
+    color: #475569;
+    border-top: 1px solid #1e293b;
+  }
+  footer a { color: #f59e0b; text-decoration: none; font-weight: 600; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    nav { padding: 0 16px; }
+    .nav-links { gap: 16px; }
+    .about-grid, .skills-grid, .projects-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Siva<span>.</span>dev</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-greeting">👋 Hello, I'm</div>
+      <div class="hero-name">N.Siva Ram <span>Prasad</span></div>
+      <div class="hero-role">B.Tech Student &nbsp;·&nbsp; Aspiring Software Developer</div>
+      <div class="hero-desc">
+        I build clean, functional web tools using Python, Java, and modern web technologies.
+        Passionate about solving real-world problems through code.
+      </div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View My Projects</a>
+        <a href="https://mail.google.com/mail/?view=cm&to=nadellasivaramprasad@gmail.com" target="_blank" class="btn-outline">Hire Me</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Skills</div>
+        </div>
+        <div>
+          <div class="stat-num">1+</div>
+          <div class="stat-label">Projects Deployed</div>
+        </div>
+        <div>
+          <div class="stat-num">B.Tech</div>
+          <div class="stat-label">Degree (pursuing)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-tag">About Me</div>
+        <div class="section-title">Who I Am</div>
+        <p style="color:#64748b;font-size:0.95rem;line-height:1.8;margin-bottom:16px;">
+          I'm a B.Tech engineering student with a strong interest in software development.
+          I enjoy building practical tools that solve real problems — from resume builders
+          to web utilities. I learn fast, work independently, and ship working products.
+        </p>
+        <p style="color:#64748b;font-size:0.95rem;line-height:1.8;">
+          Currently looking for opportunities to apply my skills, grow as a developer,
+          and contribute to meaningful projects.
+        </p>
+      </div>
+      <div class="about-card">
+        <h3>Quick Info</h3>
+        <div class="info-row">
+          <span class="label">Name</span>
+          <span class="value">N.Siva Ram Prasad</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Email</span>
+          <span class="value">
+            <a href="https://mail.google.com/mail/?view=cm&to=nadellasivaramprasad@gmail.com" target="_blank">
+              nadellasivaramprasad@gmail.com
+            </a>
+          </span>
+        </div>
+        <div class="info-row">
+          <span class="label">Degree</span>
+          <span class="value">B.Tech (pursuing)</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Location</span>
+          <span class="value">Andhra Pradesh, India</span>
+        </div>
+        <div class="info-row">
+          <span class="label">Status</span>
+          <span class="value" style="color:#10b981;font-weight:600;">✅ Open to opportunities</span>
+        </div>
+        <div class="info-row">
+          <span class="label">GitHub</span>
+          <span class="value">
+            <a href="https://github.com/NSivaRamPrasad" target="_blank">github.com/NSivaRamPrasad</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-tag">Skills</div>
+    <div class="section-title">What I Work With</div>
+    <div class="section-sub">Technologies and tools I use to build projects.</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Python</div>
+        <div class="skill-level">Intermediate</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☕</div>
+        <div class="skill-name">Java</div>
+        <div class="skill-level">Intermediate</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">HTML & CSS</div>
+        <div class="skill-level">Proficient</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">JavaScript</div>
+        <div class="skill-level">Intermediate</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔧</div>
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-level">Familiar</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🚀</div>
+        <div class="skill-name">Vercel Deploy</div>
+        <div class="skill-level">Familiar</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-tag">Projects</div>
+    <div class="section-title">Things I've Built</div>
+    <div class="section-sub">Real, deployed tools — not just mockups.</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-badge">✅ Live</div>
+        <div class="project-title">Resume Builder Pro</div>
+        <div class="project-desc">
+          A free online resume builder with live preview, dynamic project adding,
+          ATS score checker, and one-click PDF download. Built with plain HTML/CSS/JS — no frameworks.
+        </div>
+        <div class="project-tags">
+          <span class="project-tag">HTML</span>
+          <span class="project-tag">CSS</span>
+          <span class="project-tag">JavaScript</span>
+          <span class="project-tag">html2pdf</span>
+          <span class="project-tag">Vercel</span>
+        </div>
+        <div class="project-links">
+          <a href="https://resume-builder-rho-puce-80.vercel.app" target="_blank" class="project-link">🔗 Live Demo</a>
+          <a href="https://github.com/NSivaRamPrasad/resume-builder" target="_blank" class="project-link">📂 GitHub</a>
+        </div>
+      </div>
+      <div class="project-card" style="border:1.5px dashed #e2e8f0;background:#fafafa;justify-content:center;align-items:center;text-align:center;min-height:220px;">
+        <div style="font-size:2rem;margin-bottom:10px;">➕</div>
+        <div style="font-weight:700;color:#94a3b8;font-size:0.9rem;">More projects coming soon</div>
+        <div style="font-size:0.8rem;color:#cbd5e1;margin-top:6px;">Currently building...</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-tag">Contact</div>
+    <div class="section-title">Let's Work Together</div>
+    <div class="section-sub">Open to internships, freelance projects, and full-time roles.</div>
+    <div>
+      <a href="https://mail.google.com/mail/?view=cm&to=nadellasivaramprasad@gmail.com" target="_blank" class="contact-email">
+        📧 nadellasivaramprasad@gmail.com
+      </a>
+    </div>
+    <div class="social-links">
+      <a href="https://github.com/NSivaRamPrasad" target="_blank" class="social-link">🐙 GitHub</a>
+      <a href="https://mail.google.com/mail/?view=cm&to=nadellasivaramprasad@gmail.com" target="_blank" class="social-link">✉ Email Me</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <strong>N.Siva Ram Prasad</strong> &nbsp;·&nbsp;
+  <a href="https://digitalheroesco.com" target="_blank">Built for Digital Heroes</a></p>
+</footer>
+
+</body>
+</html>
